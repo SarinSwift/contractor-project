@@ -9,3 +9,8 @@
 <p>{{post.contactInfo}}</p>
 
 <p><a href="/posts/{{post._id}}/edit">Edit</a></p>
+
+<!-- DELETE -->
+<p><form method="POST" action="/posts/{{post._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>

@@ -1,5 +1,6 @@
+var exphbs = require('express-handlebars');
 const express = require('express')
-const methodOverride = require('method-override');
+const methodOverride = require('method-override')
 
 const app = express()
 
@@ -11,20 +12,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'))
 
-var exphbs = require('express-handlebars');
 
-// let posts = [
-//     { title: "Homemade organic cookies", foodTitle: "Good for all ages!" },
-//     { title: "Organic acai powder", foodTitle: "Easily blend formula" }
-// ]
+
 
 const Post = mongoose.model('Post', {
     title: String,
     foodTitle: String,
     description: String,
-    number: Number,
+    number: String,
     contactInfo: String
-})
+});
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -57,7 +54,7 @@ app.post('/posts', (req, res) => {
 
 // SHOW
 app.get('/posts/:id', (req, res) => {
-    Post.findById(req.params.id).then((post) => {
+    Post.findById(req.params.id).then(post => {
         res.render('posts-show', { post: post });
     }).catch((err) => {
         console.log(err.message);
@@ -67,12 +64,12 @@ app.get('/posts/:id', (req, res) => {
 // EDIT
 app.get('/posts/:id/edit', (req, res) => {
     Post.findById(req.params.id, function(err, post) {
-        res.render('posts-edit', { post: post });
+        res.render('posts-edit', {post: post});
     })
 })
 
 // UPDATE
-app.put('/posts/:id', (req, res) => {
+app.put('/posts/:id/', (req, res) => {
     Post.findByIdAndUpdate(req.params.id, req.body)
         .then(post => {
             res.redirect(`/posts/${post._id}`)
@@ -82,6 +79,15 @@ app.put('/posts/:id', (req, res) => {
         })
 })
 
+// DELETE
+app.delete('/posts/:id/', function (req, res) {
+  console.log("DELETE post")
+  Post.findByIdAndRemove(req.params.id).then((post) => {
+    res.redirect('/');
+  }).catch((err) => {
+    console.log(err.message);
+  })
+})
 
 
 app.listen(3000, () => {
