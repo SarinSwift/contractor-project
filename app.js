@@ -3,6 +3,9 @@ const app = express()
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/contractor-project');
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 var exphbs = require('express-handlebars');
 
 // let posts = [
@@ -12,7 +15,10 @@ var exphbs = require('express-handlebars');
 
 const Post = mongoose.model('Post', {
     title: String,
-    foodTitle: String
+    foodTitle: String,
+    description: String,
+    number: Number,
+    contactInfo: String
 })
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -27,6 +33,21 @@ app.get('/', (req, res) => {
         .catch(err => {
             console.log(err);
         })
+})
+
+// NEW
+app.get('/posts/new', (req, res) => {
+    res.render('posts-new', {});
+})
+
+// CREATE
+app.post('/posts', (req, res) => {
+    Post.create(req.body).then((post) => {
+        console.log(post);
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
 })
 
 
