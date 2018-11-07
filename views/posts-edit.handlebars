@@ -1,6 +1,6 @@
-<!-- views/posts-new.handlebars -->
+<!-- views/posts-edit.handlebars -->
 
-<form method="POST" action="/posts">
+<form method="POST" action="/posts/{{post._id}}?_method=PUT">
     {{> posts-form}}
 
     <!-- BUTTON -->

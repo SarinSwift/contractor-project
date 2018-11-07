@@ -1,10 +1,15 @@
 const express = require('express')
+const methodOverride = require('method-override');
+
 const app = express()
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/contractor-project');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(methodOverride('_method'))
 
 var exphbs = require('express-handlebars');
 
@@ -44,12 +49,38 @@ app.get('/posts/new', (req, res) => {
 app.post('/posts', (req, res) => {
     Post.create(req.body).then((post) => {
         console.log(post);
-        res.redirect('/');
+        res.redirect(`/posts/${post._id}`);
     }).catch((err) => {
         console.log(err.message);
     })
 })
 
+// SHOW
+app.get('/posts/:id', (req, res) => {
+    Post.findById(req.params.id).then((post) => {
+        res.render('posts-show', { post: post });
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+// EDIT
+app.get('/posts/:id/edit', (req, res) => {
+    Post.findById(req.params.id, function(err, post) {
+        res.render('posts-edit', { post: post });
+    })
+})
+
+// UPDATE
+app.put('/posts/:id', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body)
+        .then(post => {
+            res.redirect(`/posts/${post._id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
 
 
 
