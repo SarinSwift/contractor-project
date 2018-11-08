@@ -3,18 +3,22 @@ const express = require('express')
 const methodOverride = require('method-override')
 
 const app = express()
+const port = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/contractor-projects');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/contractor-projects');
+
 
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(methodOverride('_method'))
 
 const Post = require('./models/post');
 
-const posts = require('./controllers/posts')
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
+
+
+// const posts = require('./controllers/posts')
+
 
 // const Post = mongoose.model('Post', {
 //     title: String,
@@ -81,7 +85,7 @@ app.put('/posts/:id/', (req, res) => {
 })
 
 // DELETE
-app.delete('/posts/:id/', function (req, res) {
+app.delete('/posts/:id', function (req, res) {
   console.log("DELETE post")
   Post.findByIdAndRemove(req.params.id).then((post) => {
     res.redirect('/');
@@ -90,9 +94,13 @@ app.delete('/posts/:id/', function (req, res) {
   })
 })
 
+var postRoutes = require('./controllers/posts')
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!')
-})
+postRoutes(app, Post);
+
+// app.listen(3000, () => {
+//     console.log('App listening on port 3000!')
+// })
+app.listen(port);
 
 module.exports = app;
