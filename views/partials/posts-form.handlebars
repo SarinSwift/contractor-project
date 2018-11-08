@@ -1,37 +1,38 @@
 <!-- views/partials/posts-form.handlebars -->
 
 <fieldset>
-    
+
     <legend>Edit Post</legend>
 
     <!-- TITLE -->
-    <p>
-        <label for="title">Title</label><br>
-        <input type="text" name="title" />
-    </p>
+    <div class="form-group">
+        <label for="post-title">Title</label><br>
+        <input class="form-control" id="post-title" type="text" name="title" value="{{post.title}}"/>
+        <!-- <input type="text" name="title" /> -->
+    </div>
 
     <!-- FOOD TITLE -->
-    <p>
+    <div class="form-group">
         <label for="foodTitle">Food Title</label><br>
-        <input type="text" name="foodTitle" />
-    </p>
+        <input class="form-control" id="food-title" type="text" name="foodTitle" value="{{post.foodTitle}}" />
+    </div>
 
     <!-- DESCRIPTION -->
-    <p>
-        <label for="description">Description</label><br>
-        <textarea id="description-text" name="description" rows="10" /></textarea>
-    </p>
+    <div class="form-group">
+        <label for="post-description">Description</label><br>
+        <textarea class="form-control" id="post-description" name="description" rows="10" />{{post.description}}</textarea>
+    </div>
 
     <!-- NUMBER -->
-    <p>
-        <label for="number">Number</label><br>
-        <input type="text" name="number" />
-    </p>
+    <div class="form-group">
+        <label for="post-number">Number</label><br>
+        <input class="form-control" id="post-number" type="text" name="number" value="{{post.number}}"/>
+    </div>
 
     <!-- CONTACT INFO -->
-    <p>
-        <lable for="contactInfo">Contact Information</label><br>
-        <input type="text" name="contactInfo" />
-    </p>
+    <div class="form-group">
+        <label for="post-contactInfo">Contact Information</label><br>
+        <input class="form-control" id="post-contactInfo" type="text" name="contactInfo" value="{{post.contactInfo}}"/>
+    </div>
 
 </fieldset>
