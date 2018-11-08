@@ -12,16 +12,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'))
 
+const Post = require('./models/post');
 
+const posts = require('./controllers/posts')
 
-
-const Post = mongoose.model('Post', {
-    title: String,
-    foodTitle: String,
-    description: String,
-    number: String,
-    contactInfo: String
-});
+// const Post = mongoose.model('Post', {
+//     title: String,
+//     foodTitle: String,
+//     description: String,
+//     number: String,
+//     contactInfo: String
+// });
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -93,3 +94,5 @@ app.delete('/posts/:id/', function (req, res) {
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
 })
+
+module.exports = app;
