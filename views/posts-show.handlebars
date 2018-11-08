@@ -1,16 +1,19 @@
 <!-- views/posts-show.handlebars -->
 
 <a href="/">Back To Home</a>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>{{post.title}}</h1>
+        <h2>{{post.foodTitle}}</h2>
+        <p>{{post.description}}</p>
+        <p>{{post.number}}</p>
+        <p>{{post.contactInfo}}</p>
 
-<h1>{{post.title}}</h1>
-<h2>{{post.foodTitle}}</h2>
-<p>{{post.description}}</p>
-<p>{{post.number}}</p>
-<p>{{post.contactInfo}}</p>
+        <p><a href="/posts/{{post._id}}/edit">Edit</a></p>
 
-<p><a href="/posts/{{post._id}}/edit">Edit</a></p>
-
-<!-- DELETE -->
-<p><form method="POST" action="/posts/{{post._id}}?_method=DELETE">
-    <button type="submit">Delete</button>
-</form></p>
+        <!-- DELETE -->
+        <p><form method="POST" action="/posts/{{post._id}}?_method=DELETE">
+            <button type="submit">Delete</button>
+        </form></p>
+    </div>
+</div>

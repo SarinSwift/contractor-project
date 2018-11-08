@@ -5,7 +5,7 @@ const methodOverride = require('method-override')
 const app = express()
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/contractor-project');
+mongoose.connect('mongodb://localhost/contractor-projects');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));

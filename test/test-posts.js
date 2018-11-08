@@ -19,7 +19,7 @@ const samplePost =      {
 describe('Posts', () => {
 
     after(() => {
-        Post.deleteMany({title: 'Super sweet post'}).exec((err, posts) => {
+        Post.deleteMany({title: 'Cookie'}).exec((err, posts) => {
             console.log(posts)
             posts.remove();
         })

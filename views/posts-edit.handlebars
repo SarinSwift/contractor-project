@@ -1,11 +1,19 @@
 <!-- views/posts-edit.handlebars -->
 
-<form method="POST" action="/posts/{{post._id}}?_method=PUT">
-    {{> posts-form}}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="POST" action="/posts/{{post._id}}?_method=PUT">
+            {{> posts-form}}
 
-    <!-- BUTTON -->
-    <p>
-        <button type="submit">Save Post</button>
-    </p>
+            <!-- BUTTON -->
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Save Post</button>
+            </div>
 
-</form>
+            <!-- <p>
+                <button type="submit">Save Post</button>
+            </p> -->
+
+        </form>
+    </div>
+</div>
