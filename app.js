@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/contractor-proj
 const bodyParser = require('body-parser');
 
 const Post = require('./models/post');
+const Comment = require('./models/comment');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
@@ -60,11 +61,14 @@ app.post('/posts', (req, res) => {
 // SHOW
 app.get('/posts/:id', (req, res) => {
     Post.findById(req.params.id).then(post => {
-        res.render('posts-show', { post: post });
+        // fetch its comments
+        Comment.find({ postId: req.params.id }).then(comments => {
+            res.render('posts-show', { post: post, comments: comments })
+        })
     }).catch((err) => {
         console.log(err.message);
-    })
-})
+    });
+});
 
 // EDIT
 app.get('/posts/:id/edit', (req, res) => {
@@ -94,9 +98,20 @@ app.delete('/posts/:id', function (req, res) {
   })
 })
 
+// CREATE Comment
+app.post('/posts/comments', (req, res) => {
+    Comment.create(req.body).then(comment => {
+        res.redirect(`/posts/${comment.postId}`);
+    }).catch((err) => {
+        console.log(err.message);
+    });
+});
+
 var postRoutes = require('./controllers/posts')
+var commentRoutes = require('./controllers/comments')
 
 postRoutes(app, Post);
+commentRoutes(app, Comment);
 
 // app.listen(3000, () => {
 //     console.log('App listening on port 3000!')

@@ -1,19 +1,29 @@
 <!-- views/partials/comment-form.handlebars -->
 
-<form>
+<form action="/posts/comments" method="post">
+    <input type="hidden" value="{{post._id}}" name="postId">
     <fieldset>
         <legend>Add a Comment</legend>
 
         <!-- TITLE -->
         <div class="form-group">
             <label for="comment-title">Title</label><br>
-            <input class="form-control" id="comment-title" type="text" name="title" placeholder="Title"/>
+            <input class="form-control"
+                id="comment-title"
+                type="text"
+                name="title"
+                placeholder="Title"/>
         </div>
 
         <!-- DESCRIPTION -->
         <div class="form-group">
-            <label for="comment-description">Description</label><br>
-            <textarea class="form-control" id="comment-content" name="content" rows="10" placeholer="Your comment..."/></textarea>
+            <label for="comment-content">Description</label><br>
+            <textarea class="form-control"
+                id="comment-content"
+                name="content"
+                rows="10"
+                placeholder="Your comment..."/></textarea>
+
         </div>
     </fieldset>
 

@@ -13,12 +13,19 @@
 
         <!-- DELETE -->
         <p><form method="POST" action="/posts/{{post._id}}?_method=DELETE">
-            <button class="btn btn-primary" type="submit">Delete</button>
+            <button type="submit">Delete</button>
         </form></p>
 
         <hr>
         <!-- Comment form -->
         {{> comment-form}}
-        
+
+        <hr>
+
+        <!-- Show Comments -->
+        {{#each comments}}
+            {{> comments}}
+        {{/each}}
+
     </div>
 </div>
