@@ -1,6 +1,6 @@
 // controllers/comments.js
 
-module.exports = (app) => {
+module.exports = (app, Comment) => {
 
     // NEW Comment
     app.post('/posts/comments', (req, res) => {
