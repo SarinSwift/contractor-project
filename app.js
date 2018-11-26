@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 
 const app = express()
 const port = process.env.PORT || 3000;
+app.use(express.static('public'))
 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/contractor-projects');

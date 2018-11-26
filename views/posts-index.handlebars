@@ -1,12 +1,29 @@
-<h1>Posts</h1>
+<div class="jumbotron text-center mt-3">
+  <h1><a href="/posts/new">Create a New Post!</a></h1>
+  <p>Buy and sell local homemade food from friends</p>
+</div>
 
-<a href="/posts/new">New Post</a>
-
-<div class="row">
+<!-- <div class="row">
     {{#each posts}}
         <div class="col-sm-3">
             <h2><a href="/posts/{{this._id}}">{{this.title}}</a></h2>
             <small>{{this.foodTitle}}</small>
         </div>
+    {{/each}}
+</div> -->
+
+<div class="row">
+    {{#each posts}}
+    <div class="col-sm-4 mt-3">
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{this.foodTitle}}</p>
+                <a href="/posts/{{this._id}}" class="btn btn-primary">View post</a>
+            </div>
+        </div>
+
+    </div>
     {{/each}}
 </div>

@@ -1,0 +1,3 @@
+
+- add cards
+- use image links to add images
