@@ -5,7 +5,8 @@ const Post = mongoose.model('Post', {
     foodTitle: String,
     description: String,
     number: String,
-    contactInfo: String
+    contactInfo: String,
+    imageUrl: String
 });
 
 module.exports = Post;

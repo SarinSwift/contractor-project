@@ -14,9 +14,10 @@
 
 <div class="row">
     {{#each posts}}
-    <div class="col-sm-4 mt-3">
+    <div class="col-sm-4 mt-3 mb-3">
         <div class="card" style="width: 20rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+            <!-- <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap"> -->
+            <img class="card-img-top" src={{this.imageUrl}} alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{this.title}}</h5>
                 <p class="card-text">{{this.foodTitle}}</p>
